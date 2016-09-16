@@ -107,12 +107,21 @@
 		    topics: ["religion"],
 		    timestamp: 1407803502
 		}, {
-		    id: 3,
+		    // id: 3,
 		    title: "Can ewoks use the force? Jedi council debates.",
 		    authors: ["person-c"],
 		    topics: ["race", "religion"],
 		    timestamp: 1404952302
-		}]
+		},
+		{"brand":"Puma",
+		"category":"4.Polos & T-Shirts",
+		"authors":["White"],
+		"fabric":"100% Cotton",
+		"image":"http://img.fkcdn.com/image/t-shirt/w/k/a/56346206white-puma-xl-400x400-imaddb5qhf25jpyv.jpeg",
+		"key":"flipkart.com_TSHDCFPYN3ZTVRKH",
+		"topics":["Printed"]
+		}
+		]
 
 		window.collection = new PourOver.Collection(article_data);
 
@@ -131,7 +140,7 @@
 
 		// Grab everything and store it
 		// We'll feed this to Bloodhound
-		// Grab a list of all cids to pass when we want to 
+		// Grab a list of all cids to pass when we want to
 		var base_view = view.getCurrentItems(),
 		    all_cids  = _.pluck(base_view, 'cid');
 
@@ -169,7 +178,7 @@
 		    engine.get(val, function(suggestions){
 		        var cids = _.pluck(suggestions, 'cid');
 		        cb(cids);
-		    });   
+		    });
 		}
 
 		// Listen to the title input
@@ -182,7 +191,7 @@
 		        // If we don't have matches, add all cids to our filter, making it irrelevant
 		        addTextSearchResultsToFilter(all_cids);
 		    }
-		    
+
 		});
 
 		function addTextSearchResultsToFilter(cids){
@@ -267,8 +276,14 @@
 		    // Clear previous results
 		    $resultsContainer.html('');
 		    results.forEach(function(result){
-		        $resultsContainer.append('<div class="result"><div class="row"><strong>id</strong>: ' + result.id + '; </div class="row"><div class="row"><strong>date</strong>: ' + new Date(result.timestamp*1000).toDateString() + ' </div class="row"><div class="row"><strong>title</strong>: ' + result.title + '; </div class="row"><div class="row"><strong>authors</strong>: ' + result.authors.join(', ') + '; </div class="row"><div class="row"><strong>topics</strong>: ' + result.topics.join(', ') + '</div>');
-		    });
+		        $resultsContainer.append(
+                '<div class="result"><div class="row">' +
+                '<strong>id</strong>: ' + result.id + ';</div class="row"><div class="row">' +
+                '<strong>date</strong>: ' + new Date(result.timestamp * 1000).toDateString() + ' </div class="row"><div class="row">' +
+                '<strong>title</strong>: ' + result.title + '; </div class="row"><div class="row">' +
+                '<strong>authors</strong>: ' + result.authors.join(', ') + '; </div class="row"><div class="row">' +
+                '<strong>topics</strong>: ' + result.topics.join(', ') + '</div>');
+      });
 		}
 	</script>
 
